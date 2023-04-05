@@ -1,0 +1,39 @@
+﻿<Window x:Class="DataGridView.View.WinMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataGridView.View"
+        xmlns:vm="clr-namespace:DataGridView.ViewModel"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="WinMain" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vm:WinMainViewModel/>
+    </Window.DataContext>
+    <DockPanel>
+        <StackPanel Margin="5" Orientation="Horizontal" DockPanel.Dock="Bottom">
+            <Button Content="New Employee" Command="{Binding AddNewEmployeeCommand}"/>
+            <hc:TextBox x:Name="filterTexBox" Width="200" Margin="5,0,0,0"
+                        hc:InfoElement.Placeholder="Filter data by name"
+                        Text="{Binding FilterText,UpdateSourceTrigger=PropertyChanged}"
+                        InputMethod.IsInputMethodEnabled="False"
+                        TextChanged="FilterTexBox_OnTextChanged">
+            </hc:TextBox>
+        </StackPanel>
+
+        <DataGrid Name="DataGrid"
+                  ItemsSource="{Binding CollectionView}"
+                  CanUserDeleteRows="True"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday}"/>
+                <DataGridTextColumn Header="Salary" Binding="{Binding Salary}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
