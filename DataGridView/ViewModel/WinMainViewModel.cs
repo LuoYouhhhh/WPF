@@ -14,6 +14,7 @@ namespace DataGridView.ViewModel
         {
             employees = new List<Employee>(Employee.FakeMany(10));
             CollectionView = CollectionViewSource.GetDefaultView(employees);
+            //定义过滤规则
             CollectionView.Filter = (item) =>
             {
                 if (string.IsNullOrEmpty(FilterText)) return true;
