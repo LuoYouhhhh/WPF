@@ -18,8 +18,10 @@
             <hc:TextBox x:Name="filterTexBox" Width="200" Margin="5,0,0,0"
                         hc:InfoElement.Placeholder="Filter data by name"
                         Text="{Binding FilterText,UpdateSourceTrigger=PropertyChanged}"
-                        InputMethod.IsInputMethodEnabled="False"
-                        TextChanged="FilterTexBox_OnTextChanged">
+                        InputMethod.IsInputMethodEnabled="False">
+                <hc:TextBox.InputBindings>
+                    <KeyBinding Key="Enter" Command="{Binding FilterTextChangedCommand}"/>
+                </hc:TextBox.InputBindings>
             </hc:TextBox>
         </StackPanel>
 

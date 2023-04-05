@@ -39,6 +39,13 @@ namespace DataGridView.ViewModel
             set { SetProperty(ref filterText, value); }
         }
 
+        
+
+        public ICommand FilterTextChangedCommand
+        {
+            get { return new RelayCommand(OnFilterTextChanged); }
+        }
+
         public void OnFilterTextChanged()
         {
             CollectionView.Refresh();
@@ -48,7 +55,7 @@ namespace DataGridView.ViewModel
         {
             get { return new RelayCommand(AddNewEmployee); }
         }
-        
+
         public void AddNewEmployee()
         {
             employees.Add(Employee.FakeOne());
